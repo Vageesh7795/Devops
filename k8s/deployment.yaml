@@ -1,1 +1,19 @@
-
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sample-web
+  template:
+    metadata:
+      labels:
+        app: sample-web
+    spec:
+      containers:
+        - name: sample-web
+          image: image-registry.openshift-image-registry.svc:5000/cicd-demo/sample-web:latest
+          ports:
+            - containerPort: 8080
